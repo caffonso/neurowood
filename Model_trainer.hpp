@@ -8,9 +8,6 @@ public:
     // adequado ao tipo de modelo, portanto a implementação do método cabe a
     // cada classe concreta.
     virtual void train() = 0;
-
-    // Destruidor virtual
-	virtual ~Model_trainer();
 	
     // A avaliação do classificador é uma operação genérica, que pode ser aplicada
     // sobre qualquer modelo. Este método é concreto.

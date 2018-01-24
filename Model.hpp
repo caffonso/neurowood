@@ -13,12 +13,25 @@ enum enumModels
 class Model
 {
 public:
-
 	// Método virtual. Interface para obter classificação dos modelos concretos
-	virtual int classify() = 0;
-	
-	// É necessário declarar destruidor virtual
-	virtual ~Model();
+	virtual float classify(Mat *vetor_descritor) = 0;
+
 };	
 
+
+class MLP_Model: public Model
+{
+	Ptr<ANN_MLP> network;
+public:
+	MLP_Model(ANN_MLP::Params *p);
+	float classify(Mat *vetor_descritor);
+}
+
+class KNN_Model: public Model
+{
+	Ptr<KNearest> model;
+public:
+	KNN_Model();
+	float classify(Mat *vetor_descritor);
+} 
 #endif

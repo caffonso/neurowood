@@ -5,25 +5,10 @@
 #include "Im_processing.hpp"
 
 using namespace std;
-int main(void)
+int main(int argc, char *argv[])
 {
     
-    int n = 2;
     
-
-    
-    // Teste do mecanismo de polimorfismo para os filtros
-    Im_processing *improc[3];
-    improc[0] = new Color_filter;
-    improc[1] = new Crop_image;
-    improc[2] = new Noise_filter;
-
-    for (int i = 0; i < 3; i++) {
-        improc[i]->apply(&n);
-    }    
- 
-    cout << "Hello world!" << endl;
-    cout << n << endl;
     return 0;
 };
 

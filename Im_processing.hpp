@@ -15,26 +15,34 @@ enum enumImProcessing
 // Estrutura base, abstrata. Interface para passagem de parâmetros aos construtores.  
 struct IMPROC_PARAMS
 {
-    enumImProcessing type;
+   
 };
 
 // Estrutura derivada, concreta. Registra parâmetros específicos à esse algoritmo.
-struct CROP_PARAMS : IMPROC_PARAMS
+struct CROP_PARAMS : public IMPROC_PARAMS
 {
     // parametros exemplo
     int par1 = 0; // pode ter valores default
     float par2;
 };
 
-struct NOISE_PARAMS : IMPROC_PARAMS 
+struct NOISE_PARAMS : public IMPROC_PARAMS 
 {
     // parametros
 };
 
-struct COLOR_PARAMS : IMPROC_PARAMS 
+struct COLOR_PARAMS : public IMPROC_PARAMS 
 {
     // parametros
 };
+
+
+struct IMPROC_DATA
+{
+    enumImProcessing type;
+    IMPROC_PARAMS parametros;
+};
+
 
 // Classes para processamento de imagem
 

@@ -11,12 +11,13 @@ class Classifier
 	Model* _model;							// Modelo utilizado pelo classificador
 	Model_trainer* _trainer;				// Módulo responsável pelas rotinas de treinamento do classificador
 public:
+	
+	Classifier();    	// Construtor
+	// Função principal: recebe uma imagem e retorna a previsão de categoria	
+	int classify(cv::Mat* input_img);
+	
 
-    // Função principal: recebe uma imagem e retorna a classificação obtida pelo modelo	
-	int predict(cv::Mat* input_img);
-
-    // Construtor
-	Classifier(); 			
+     			
 };
 
 #endif
