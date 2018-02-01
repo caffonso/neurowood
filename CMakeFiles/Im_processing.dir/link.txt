@@ -1,0 +1,2 @@
+/usr/bin/ar cr libIm_processing.a  CMakeFiles/Im_processing.dir/Im_processing.cpp.o
+/usr/bin/ranlib libIm_processing.a

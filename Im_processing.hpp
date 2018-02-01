@@ -22,7 +22,7 @@ struct IMPROC_PARAMS
 struct CROP_PARAMS : public IMPROC_PARAMS
 {
     // parametros exemplo
-    int par1 = 0; // pode ter valores default
+    int par1;
     float par2;
 };
 

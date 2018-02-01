@@ -1,0 +1,2 @@
+/usr/bin/ar cr libClassifier_builder.a  CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.o
+/usr/bin/ranlib libClassifier_builder.a

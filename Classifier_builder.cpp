@@ -9,13 +9,13 @@ Classifier_builder::Classifier_builder()
     
 }
 
-
+/*
 Classifier* Classifier_builder::build_classifier(char *nome_arquivo_parametros)
 {
     FILE *fp;
     int count;
+    int num_objetos;
     Im_processing *improc_pointer;
-
     // Abre o arquivo
 
     // Interpreta e extrai os parâmetros do arquivo
@@ -40,7 +40,7 @@ Classifier* Classifier_builder::build_classifier(char *nome_arquivo_parametros)
 
     return Classifier(_improc, _extractor, _model, _trainer);
 }
-
+*/
 
 
 

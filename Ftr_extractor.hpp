@@ -1,6 +1,7 @@
 #ifndef FTR_EXTRACTOR
 #define FTR_EXTRACTOR
 
+#include <opencv2/opencv.hpp>
 /*
     Estruturas auxiliares para passagem de parâmetro
  
@@ -37,7 +38,7 @@ struct HARALICK_PARAMS : public EXTRACTOR_PARAMS
 struct EXTRACTOR_DATA
 {   
     enumDescriptors tipo;
-    EXTRACOTR_PARAMS parametros;    
+    EXTRACTOR_PARAMS parametros;    
 };
 
 
@@ -45,7 +46,7 @@ struct EXTRACTOR_DATA
 class Ftr_extractor
 {
 public:
-	virtual Mat* calculate_vector(int *n) = 0;
+	virtual cv::Mat* calculate_vector(int *n) = 0;
 };
 
 // Haralick
@@ -53,7 +54,8 @@ class Haralick_extractor: public Ftr_extractor
 {
     HARALICK_PARAMS parameters;
 public:
-	Mat* calculate_vector(int *n);
+    Haralick_extractor();
+	cv::Mat* calculate_vector(int *n);
 };
 
 // LBP
@@ -61,7 +63,8 @@ class LBP_extractor: public Ftr_extractor
 {
     LBP_PARAMS parameters;
 public:
-	MAT* calculate_vector(int *n);
+    LBP_extractor();
+	cv::Mat* calculate_vector(int *n);
 };
 
 #endif

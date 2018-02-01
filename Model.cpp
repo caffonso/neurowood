@@ -1,27 +1,44 @@
 #include "Model.hpp"
 
 // Construtor MLP
-MLP_Model::MLP_Model (ANN_MLP::Params *p)
+MLP_Model::MLP_Model(cv::Mat *params)
 {
-	network = ANN_MLP::create(p);
+	_model = cv::ml::ANN_MLP::create();
 }
 
 // 
-float MLP_Model::classify(Mat *descriptor)
+cv::Mat MLP_Model::classify(cv::InputArray vetor_descritor)
 {
-	return network.predict(vetor_descriptor);
+    cv::Mat results;
+    results = cv::Mat(1,1,1); 
+	_model->predict(vetor_descritor, results, 0);
+
+    return results;
+}
+
+void MLP_Model::train(cv::Mat& samples, cv::Mat& responses)
+{
+    _model->train(samples, cv::ml::ROW_SAMPLE, responses);
 }
 	
 
 // Construtor KNN
-KNN_Model::KNN_Model (Mat *params)
+KNN_Model::KNN_Model (cv::Mat *params)
 {
-	model = KNearest::create(params);
+	_model = cv::ml::KNearest::create();
 }
 
 
-Mat * MLP_Model::classify(Mat *descriptor)
+cv::Mat KNN_Model::classify(cv::InputArray vetor_descritor)
 {
-	return model.predict(descriptor);
+    cv::Mat results;
+    results = cv::Mat(1,1,1); 	
+	_model->predict(vetor_descritor, results);
+
+    return results;
 }
 
+void KNN_Model::train(cv::Mat& samples, cv::Mat& responses)
+{
+    _model->train(samples, cv::ml::ROW_SAMPLE, responses);
+}

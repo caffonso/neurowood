@@ -1,0 +1,2 @@
+/usr/bin/ar cr libModel_trainer.a  CMakeFiles/Model_trainer.dir/Model_trainer.cpp.o
+/usr/bin/ranlib libModel_trainer.a

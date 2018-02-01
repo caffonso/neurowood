@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/leonardo/Workbench/neurowood-0.0.1/Im_processing.cpp
+Im_processing.hpp
+/home/leonardo/Workbench/neurowood-0.0.1/Im_processing.hpp
+
+/home/leonardo/Workbench/neurowood-0.0.1/Im_processing.hpp
+

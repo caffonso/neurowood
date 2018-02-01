@@ -1,0 +1,2 @@
+/usr/bin/ar cr libFtr_extractor.a  CMakeFiles/Ftr_extractor.dir/Ftr_extractor.cpp.o
+/usr/bin/ranlib libFtr_extractor.a

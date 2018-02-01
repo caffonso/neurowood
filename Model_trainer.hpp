@@ -1,17 +1,36 @@
 #ifndef MODEL_TRAINER
 #define MODEL_TRAINER
 
+#include <opencv2/opencv.hpp>
+#include <opencv2/ml.hpp>
+
+#include "Model.hpp"
+
 class Model_trainer
-{
+{    
+    
 public:
-    // Método virtual puro. O procedimento específico de treinamento deve ser 
-    // adequado ao tipo de modelo, portanto a implementação do método cabe a
-    // cada classe concreta.
-    virtual void train() = 0;
-	
+    cv::Mat _samples;
+    cv::Mat _responses;
+    float kfold_hit_ratio(Model *model_pointer, int kfold);
+    
+
     // A avaliação do classificador é uma operação genérica, que pode ser aplicada
     // sobre qualquer modelo. Este método é concreto.
-    float evaluate();
-};	
+    void build_train_data(char *filename);
+};
 
+class MLP_trainer : public Model_trainer
+{
+    
+public:
+    MLP_trainer();
+};
+
+class KNN_trainer : public Model_trainer
+{
+    
+public:
+	KNN_trainer();
+};
 #endif
