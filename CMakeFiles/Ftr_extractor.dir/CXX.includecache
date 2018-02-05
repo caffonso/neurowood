@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/leonardo/Workbench/neurowood-0.0.1/Ftr_extractor.cpp
+/home/leonardo/Workbench/neurowood-0.0.2/Ftr_extractor.cpp
 Ftr_extractor.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Ftr_extractor.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Ftr_extractor.hpp
 
-/home/leonardo/Workbench/neurowood-0.0.1/Ftr_extractor.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Ftr_extractor.hpp
 opencv2/opencv.hpp
 -
 

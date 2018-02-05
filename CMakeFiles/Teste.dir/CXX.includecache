@@ -6,57 +6,57 @@
 
 #IncludeRegexTransform: 
 
-/home/leonardo/Workbench/neurowood-0.0.1/Classifier.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Classifier.hpp
 opencv2/opencv.hpp
 -
 opencv2/ml.hpp
 -
 Im_processing.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Im_processing.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Im_processing.hpp
 Ftr_extractor.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Ftr_extractor.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Ftr_extractor.hpp
 Model.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Model.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Model.hpp
 Model_trainer.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Model_trainer.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Model_trainer.hpp
 
-/home/leonardo/Workbench/neurowood-0.0.1/Classifier_builder.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Classifier_builder.hpp
 opencv2/opencv.hpp
 -
 opencv2/ml.hpp
 -
 Im_processing.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Im_processing.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Im_processing.hpp
 Ftr_extractor.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Ftr_extractor.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Ftr_extractor.hpp
 Model.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Model.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Model.hpp
 Model_trainer.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Model_trainer.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Model_trainer.hpp
 Classifier.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Classifier.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Classifier.hpp
 
-/home/leonardo/Workbench/neurowood-0.0.1/Ftr_extractor.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Ftr_extractor.hpp
 opencv2/opencv.hpp
 -
 
-/home/leonardo/Workbench/neurowood-0.0.1/Im_processing.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Im_processing.hpp
 
-/home/leonardo/Workbench/neurowood-0.0.1/Model.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Model.hpp
 opencv2/opencv.hpp
 -
 opencv2/ml.hpp
 -
 
-/home/leonardo/Workbench/neurowood-0.0.1/Model_trainer.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Model_trainer.hpp
 opencv2/opencv.hpp
 -
 opencv2/ml.hpp
 -
 Model.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Model.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Model.hpp
 
-/home/leonardo/Workbench/neurowood-0.0.1/main.cpp
+/home/leonardo/Workbench/neurowood-0.0.2/main.cpp
 opencv2/opencv.hpp
 -
 opencv2/core/mat.hpp
@@ -68,17 +68,17 @@ iostream
 time.h
 -
 Im_processing.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Im_processing.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Im_processing.hpp
 Ftr_extractor.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Ftr_extractor.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Ftr_extractor.hpp
 Model.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Model.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Model.hpp
 Model_trainer.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Model_trainer.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Model_trainer.hpp
 Classifier.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Classifier.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Classifier.hpp
 Classifier_builder.hpp
-/home/leonardo/Workbench/neurowood-0.0.1/Classifier_builder.hpp
+/home/leonardo/Workbench/neurowood-0.0.2/Classifier_builder.hpp
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h

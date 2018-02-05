@@ -12,7 +12,7 @@ class Model_trainer
 public:
     cv::Mat _samples;
     cv::Mat _responses;
-    float kfold_hit_ratio(Model *model_pointer, int kfold);
+    
     
 
     // A avaliação do classificador é uma operação genérica, que pode ser aplicada
@@ -25,6 +25,7 @@ class MLP_trainer : public Model_trainer
     
 public:
     MLP_trainer();
+    float mlp_kfold_hit_ratio(Model *model_pointer, int kfold);
 };
 
 class KNN_trainer : public Model_trainer
@@ -32,5 +33,6 @@ class KNN_trainer : public Model_trainer
     
 public:
 	KNN_trainer();
+    float knn_kfold_hit_ratio(Model *model_pointer, int kfold);
 };
 #endif

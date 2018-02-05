@@ -1,7 +1,7 @@
-/home/leonardo/Workbench/neurowood-0.0.1/CMakeFiles/Classifier.dir
-/home/leonardo/Workbench/neurowood-0.0.1/CMakeFiles/Classifier_builder.dir
-/home/leonardo/Workbench/neurowood-0.0.1/CMakeFiles/Ftr_extractor.dir
-/home/leonardo/Workbench/neurowood-0.0.1/CMakeFiles/Im_processing.dir
-/home/leonardo/Workbench/neurowood-0.0.1/CMakeFiles/Model.dir
-/home/leonardo/Workbench/neurowood-0.0.1/CMakeFiles/Model_trainer.dir
-/home/leonardo/Workbench/neurowood-0.0.1/CMakeFiles/Teste.dir
+/home/leonardo/Workbench/neurowood-0.0.2/CMakeFiles/Classifier.dir
+/home/leonardo/Workbench/neurowood-0.0.2/CMakeFiles/Classifier_builder.dir
+/home/leonardo/Workbench/neurowood-0.0.2/CMakeFiles/Ftr_extractor.dir
+/home/leonardo/Workbench/neurowood-0.0.2/CMakeFiles/Im_processing.dir
+/home/leonardo/Workbench/neurowood-0.0.2/CMakeFiles/Model.dir
+/home/leonardo/Workbench/neurowood-0.0.2/CMakeFiles/Model_trainer.dir
+/home/leonardo/Workbench/neurowood-0.0.2/CMakeFiles/Teste.dir

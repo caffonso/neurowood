@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/leonardo/Workbench/neurowood-0.0.1
+CMAKE_SOURCE_DIR = /home/leonardo/Workbench/neurowood-0.0.2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/leonardo/Workbench/neurowood-0.0.1
+CMAKE_BINARY_DIR = /home/leonardo/Workbench/neurowood-0.0.2
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Classifier_builder.dir/depend.make
@@ -51,17 +51,17 @@ include CMakeFiles/Classifier_builder.dir/flags.make
 
 CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.o: CMakeFiles/Classifier_builder.dir/flags.make
 CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.o: Classifier_builder.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/leonardo/Workbench/neurowood-0.0.1/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/leonardo/Workbench/neurowood-0.0.2/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.o -c /home/leonardo/Workbench/neurowood-0.0.1/Classifier_builder.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.o -c /home/leonardo/Workbench/neurowood-0.0.2/Classifier_builder.cpp
 
 CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/leonardo/Workbench/neurowood-0.0.1/Classifier_builder.cpp > CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/leonardo/Workbench/neurowood-0.0.2/Classifier_builder.cpp > CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.i
 
 CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/leonardo/Workbench/neurowood-0.0.1/Classifier_builder.cpp -o CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/leonardo/Workbench/neurowood-0.0.2/Classifier_builder.cpp -o CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.s
 
 CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.o.requires:
 .PHONY : CMakeFiles/Classifier_builder.dir/Classifier_builder.cpp.o.requires
@@ -98,6 +98,6 @@ CMakeFiles/Classifier_builder.dir/clean:
 .PHONY : CMakeFiles/Classifier_builder.dir/clean
 
 CMakeFiles/Classifier_builder.dir/depend:
-	cd /home/leonardo/Workbench/neurowood-0.0.1 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/leonardo/Workbench/neurowood-0.0.1 /home/leonardo/Workbench/neurowood-0.0.1 /home/leonardo/Workbench/neurowood-0.0.1 /home/leonardo/Workbench/neurowood-0.0.1 /home/leonardo/Workbench/neurowood-0.0.1/CMakeFiles/Classifier_builder.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/leonardo/Workbench/neurowood-0.0.2 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/leonardo/Workbench/neurowood-0.0.2 /home/leonardo/Workbench/neurowood-0.0.2 /home/leonardo/Workbench/neurowood-0.0.2 /home/leonardo/Workbench/neurowood-0.0.2 /home/leonardo/Workbench/neurowood-0.0.2/CMakeFiles/Classifier_builder.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Classifier_builder.dir/depend
 
