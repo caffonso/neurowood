@@ -3,6 +3,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/ml.hpp>
+#include <stdlib.h>
 
 #include "Model.hpp"
 
@@ -17,7 +18,7 @@ public:
 
     // A avaliação do classificador é uma operação genérica, que pode ser aplicada
     // sobre qualquer modelo. Este método é concreto.
-    void build_train_data(char *filename);
+    bool build_train_data(char *filename, int class_count);
 };
 
 class MLP_trainer : public Model_trainer

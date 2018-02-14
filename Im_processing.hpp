@@ -1,6 +1,8 @@
 #ifndef IM_PROCESSING
 #define IM_PROCESSING
 
+#include <opencv2/opencv.hpp>
+
 // Estruturas para passagem de parâmetros do processamento de imagem
 
 // Opções de processamento de imagem
@@ -50,7 +52,7 @@ struct IMPROC_DATA
 class Im_processing
 {
 public:
-	virtual void apply(int *n) = 0;
+	virtual void apply(cv::Mat imOrig) = 0;
 };
 
 // Classe concreta que implementa métodos para croping da imagem
@@ -59,7 +61,7 @@ class Crop_image: public Im_processing
 	CROP_PARAMS parameters;
 public:
     Crop_image();
-	void apply(int *n);
+	void apply(cv::Mat imOrig);
 };
 
 
@@ -70,7 +72,7 @@ class Noise_filter: public Im_processing
 	NOISE_PARAMS parameters;
 public:
     Noise_filter();
-	void apply(int *n);
+	void apply(cv::Mat imOrig);
 };
 
 
@@ -80,7 +82,7 @@ class Color_filter: public Im_processing
     COLOR_PARAMS parameters;
 public:
     Color_filter();
-	void apply(int *n);
+	void apply(cv::Mat imOrig);
 };
 
 

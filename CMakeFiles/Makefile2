@@ -266,10 +266,10 @@ clean: CMakeFiles/Model_trainer.dir/clean
 # Target rules for target CMakeFiles/Teste.dir
 
 # All Build rule for target.
-CMakeFiles/Teste.dir/all: CMakeFiles/Im_processing.dir/all
 CMakeFiles/Teste.dir/all: CMakeFiles/Classifier.dir/all
-CMakeFiles/Teste.dir/all: CMakeFiles/Classifier_builder.dir/all
 CMakeFiles/Teste.dir/all: CMakeFiles/Ftr_extractor.dir/all
+CMakeFiles/Teste.dir/all: CMakeFiles/Classifier_builder.dir/all
+CMakeFiles/Teste.dir/all: CMakeFiles/Im_processing.dir/all
 CMakeFiles/Teste.dir/all: CMakeFiles/Model.dir/all
 CMakeFiles/Teste.dir/all: CMakeFiles/Model_trainer.dir/all
 	$(MAKE) -f CMakeFiles/Teste.dir/build.make CMakeFiles/Teste.dir/depend

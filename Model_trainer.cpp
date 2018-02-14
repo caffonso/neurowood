@@ -2,39 +2,58 @@
 
 using namespace std;
 
-void Model_trainer::build_train_data(char *filename) 
+static bool fcmp(float a, float b)
 {
-    ifstream inputfile(filename);
-    string current_line;
-    vector< vector<float> > all_data;
+    return ((int)a == (int)b);
+}
+
+bool Model_trainer::build_train_data(char *filename, int class_count) 
+{
+    ifstream input_file(filename);              // Leitura de arquivos através da biblioteca ifstream
     
-    while(getline(inputfile, current_line)) {
-        vector<float> values;
+    if (!input_file.is_open()) {
+        cout << "Could not open input data file." << endl;
+        return false;
+    }
+    
+    string line;                                // Buffer 
+    vector< vector<float> > all_data;           // Armazenara os valores lidos do arquivo
+    
+    // Percorre cada linha do arquivo
+    while(getline(input_file, line)) {
+        vector<float> values;                  // valores da linha atual
         
-        stringstream temp(current_line);
-        string single_value;
+        stringstream temp(line);                
+        string single_value;        
         
+        // Isola cada valor em uma string, converte em float e adiciona no vetor de valores
         while(getline(temp,single_value,',')) {
            values.push_back(atof(single_value.c_str()));
         }
-
+        // Adiciona a linha atual ao conjunto de dados
         all_data.push_back(values);
-}
-   
-    _samples = cv::Mat::zeros((int)all_data.size(), (int)all_data[0].size()-1, CV_32F);  
-    _responses = cv::Mat::zeros((int)all_data.size(), 1, CV_32F);
+    }
+     
+     // Aloca os membros do treinador com as dimensões dos dados extraídos do arquivo   
+    _samples = cv::Mat::zeros((int)all_data.size(), (int)all_data[0].size()-class_count, CV_32F);  
+    _responses = cv::Mat::zeros((int)all_data.size(), class_count, CV_32F);
 
     int rows, cols;
+    int j;
 
     for(rows = 0; rows < (int)all_data.size(); rows++) {
-        for(cols = 0; cols < (int)all_data[0].size()-1; cols++) {
+        // Lê as colunas de características
+        for(cols = 0; cols < (int)all_data[0].size()-class_count; cols++) {
             _samples.at<float>(rows,cols) = all_data[rows][cols];
         }
-        _responses.at<float>(rows) = (int)all_data[rows][cols]; 
+        // Lê as colunas de resposta
+        for(j = 0,cols = (int)all_data[0].size()-class_count; j < class_count; j++,cols++) {
+            _responses.at<float>(rows,j) = all_data[rows][cols]; 
+        }
     }
 
 
-    // Console verbose
+    // Console verbose 
     int num_samples = (int)_samples.rows;
     int feature_vec_size = (int)_samples.cols;
     int output_vec_size = (int)_responses.cols;
@@ -46,12 +65,14 @@ void Model_trainer::build_train_data(char *filename)
     std::cout << "feature_vec_size: " << feature_vec_size << std::endl;
     std::cout << "output_vec_size: " << output_vec_size << std::endl;
     std::cout << "-------------------------------------------------------------------" << std::endl;
+    return true;
 }
 
 float KNN_trainer::knn_kfold_hit_ratio(Model *model_pointer, int kfold)
 {
     int num_samples;
     int num_features;
+    int class_count;
     int hit_count;
     int split_ini, split_end;    
     float hit_ratio;
@@ -66,6 +87,7 @@ float KNN_trainer::knn_kfold_hit_ratio(Model *model_pointer, int kfold)
     
     num_samples = (int)_samples.rows;
     num_features = (int)_samples.cols;
+    class_count = (int)_responses.cols;
     hit_count = 0;
 
     split_ini = 0;
@@ -90,6 +112,8 @@ float KNN_trainer::knn_kfold_hit_ratio(Model *model_pointer, int kfold)
     std::cout << "-------------------------------------------------------------------" << std::endl;
     std::cout << "Beggining "<< kfold <<"-fold crossvalidation:" << std::endl << std::endl;
 
+    int t=0;
+    int f=0;
     for(it = 0; it < kfold; ++it) {
         int i, j;  
 
@@ -104,7 +128,9 @@ float KNN_trainer::knn_kfold_hit_ratio(Model *model_pointer, int kfold)
             for(col = 0; col < num_features; col++) {
                 testSamples.at<float>(i,col) = _samples.at<float>(row,col);
             }
-            testResponses.at<int>(i) = _responses.at<int>(row);
+            for(col = 0; col < class_count; col++) {
+                testResponses.at<float>(i,col) = _responses.at<float>(row,col); 
+            }
         }
 
         // Preenche o vetor de treinamento (antes do slice)
@@ -112,7 +138,9 @@ float KNN_trainer::knn_kfold_hit_ratio(Model *model_pointer, int kfold)
             for(col = 0; col < num_features; col++) {
                 trainSamples.at<float>(i,col) = _samples.at<float>(row,col);
             }
-            trainResponses.at<int>(i) = _responses.at<int>(row);
+            for(col = 0; col < class_count; col++) {
+                trainResponses.at<float>(i,col) = _responses.at<float>(row,col); 
+            }
         }
 
         // Preenche o vetor de treinamento (depois do slice)
@@ -120,7 +148,9 @@ float KNN_trainer::knn_kfold_hit_ratio(Model *model_pointer, int kfold)
             for(col = 0; col < num_features; col++) {
                 trainSamples.at<float>(i,col) = _samples.at<float>(row,col);
             }
-            trainResponses.at<int>(i) = _responses.at<int>(row);
+            for(col = 0; col < class_count; col++) {
+                trainResponses.at<float>(i,col) = _responses.at<float>(row,col); 
+            }
         }   
         
         cv::Ptr<cv::ml::KNearest> knn = cv::ml::KNearest::create();
@@ -137,21 +167,32 @@ float KNN_trainer::knn_kfold_hit_ratio(Model *model_pointer, int kfold)
         knn->findNearest(testSamples,k,output);
 
         for (i = 0; i < output.rows; i++) {
-            if(output.at<int>(i) == testResponses.at<int>(i)) {
+            int output_hit = 0;
+            for (j = 0, output_hit; j < output.cols; j++) {
+               if (fcmp(output.at<float>(i,j),testResponses.at<float>(i,j))) {
+                   output_hit++;
+               }
+            }
+            if (output_hit == class_count) {
+                t++;
                 hit_count++;
             }
+            else {
+                f++;
+            }
+            //Console verbose
         }
 
         // Console verbose
         std::cout << "hit_count: " << hit_count << std::endl << std::endl;
          
-        hit_ratio += (float)hit_count * 100/(float)output.rows;
+  
         hit_count = 0;
         split_ini += split_size;
         split_end += split_size;    
     }    
 
-    hit_ratio = hit_ratio / (float)kfold;
+    hit_ratio = 100.0*((t*1.0)/(t+f));;
     // Console verbose
     std::cout << "Test End!" << std::endl;
     std::cout << "-------------------------------------------------------------------" << std::endl;
@@ -167,11 +208,12 @@ float MLP_trainer::mlp_kfold_hit_ratio(Model *model_pointer, int kfold)
 {
     int num_samples;
     int num_features;
+    int class_count;
     int hit_count;
     int split_ini, split_end;    
     float hit_ratio;
     int row, col;
-    int i;
+    int i,j;
     int k = 3;
 
     cv::Mat trainSamples;
@@ -181,6 +223,7 @@ float MLP_trainer::mlp_kfold_hit_ratio(Model *model_pointer, int kfold)
     
     num_samples = (int)_samples.rows;
     num_features = (int)_samples.cols;
+    class_count = (int)_responses.cols;
     hit_count = 0;
 
     split_ini = 0;
@@ -188,10 +231,10 @@ float MLP_trainer::mlp_kfold_hit_ratio(Model *model_pointer, int kfold)
     int split_size = split_end - split_ini; 
 
     trainSamples = cv::Mat::zeros(num_samples - split_size, num_features, CV_32F);
-    trainResponses = cv::Mat::zeros(num_samples - split_size, 1, CV_32S); 
+    trainResponses = cv::Mat::zeros(num_samples - split_size, class_count, CV_32F); 
 
     testSamples = cv::Mat::zeros(split_size, num_features, CV_32F);
-    testResponses = cv::Mat::zeros(split_size, 1, CV_32S);
+    testResponses = cv::Mat::zeros(split_size, class_count, CV_32F);
 
     int it;
 
@@ -204,7 +247,8 @@ float MLP_trainer::mlp_kfold_hit_ratio(Model *model_pointer, int kfold)
     std::cout << "num_features: " << num_features << std::endl;
     std::cout << "-------------------------------------------------------------------" << std::endl;
     std::cout << "Beggining "<< kfold <<"-fold crossvalidation:" << std::endl << std::endl;
-
+    int t=0;
+    int f=0;
     for(it = 0; it < kfold; ++it) {
         int i, j;  
 
@@ -214,12 +258,14 @@ float MLP_trainer::mlp_kfold_hit_ratio(Model *model_pointer, int kfold)
         std::cout << "split_end: " << split_end << std::endl;
         std::cout << "split_size: " << split_size << std::endl; 
         
-        // Preenche o vetor de teste
+       // Preenche o vetor de teste
         for(row = split_ini, i = 0; row < split_end; row++, i++) {
             for(col = 0; col < num_features; col++) {
                 testSamples.at<float>(i,col) = _samples.at<float>(row,col);
             }
-            testResponses.at<int>(i) = _responses.at<int>(row);
+            for(col = 0; col < class_count; col++) {
+                testResponses.at<float>(i,col) = _responses.at<float>(row,col); 
+            }
         }
 
         // Preenche o vetor de treinamento (antes do slice)
@@ -227,7 +273,9 @@ float MLP_trainer::mlp_kfold_hit_ratio(Model *model_pointer, int kfold)
             for(col = 0; col < num_features; col++) {
                 trainSamples.at<float>(i,col) = _samples.at<float>(row,col);
             }
-            trainResponses.at<int>(i) = _responses.at<int>(row);
+            for(col = 0; col < class_count; col++) {
+                trainResponses.at<float>(i,col) = _responses.at<float>(row,col); 
+            }
         }
 
         // Preenche o vetor de treinamento (depois do slice)
@@ -235,52 +283,75 @@ float MLP_trainer::mlp_kfold_hit_ratio(Model *model_pointer, int kfold)
             for(col = 0; col < num_features; col++) {
                 trainSamples.at<float>(i,col) = _samples.at<float>(row,col);
             }
-            trainResponses.at<int>(i) = _responses.at<int>(row);
-        }   
+            for(col = 0; col < class_count; col++) {
+                trainResponses.at<float>(i,col) = _responses.at<float>(row,col); 
+            }
+        }  
         
-        cv::Ptr<cv::ml::ANN_MLP> mlp = cv::ml::ANN_MLP::create();
-        
-        int std_layer_size = num_features;
-        int layers_vec[4] = {num_features,std_layer_size,std_layer_size,1};
-        cv::Mat layers = cv::Mat(1,4,cv::DataType<int>::type, layers_vec);
-
-        mlp->setLayerSizes(layers);
-
-        // Forma o conjunto de treinamento no formato requisitado pelo opencv
+         // Forma o conjunto de treinamento no formato requisitado pelo opencv
         cv::Ptr<cv::ml::TrainData> kfold_data = cv::ml::TrainData::create(trainSamples, cv::ml::ROW_SAMPLE, trainResponses);
+        
+        int std_layer_size = 100;
+        int layers_vec[4] = {num_features,std_layer_size,std_layer_size,class_count};
+        cv::Mat layers = cv::Mat(1,4,cv::DataType<int>::type, layers_vec);
+        int method = cv::ml::ANN_MLP::BACKPROP;
+        double method_param = 0.1;
+        // Tipo do critério de parada, num_iterações, precisão
+        cv::TermCriteria termCrit = cv::TermCriteria(
+            1,
+            100,
+            0.001
+        );
+      
+        cv::Ptr<cv::ml::ANN_MLP> model;
+        
+        model = cv::ml::ANN_MLP::create();
+        model->setLayerSizes(layers);
+        model->setActivationFunction(cv::ml::ANN_MLP::SIGMOID_SYM,0,0); 
+        model->setTermCriteria(termCrit);
+        model->setTrainMethod(method,method_param);
+        
+        
+        model->train(kfold_data);
+        
+        std::cout << "treinou?: " << model->isTrained() << std::endl;  
 
+        cv::Mat output = cv::Mat::zeros(split_size, class_count, CV_32F);       
 
-        mlp->train(kfold_data);  
-    
-        cv::Mat output = cv::Mat::zeros(split_size, 1, CV_32F);
+        model->predict(testSamples,output);
 
-        mlp->predict(testSamples,output);
-
+        
         for (i = 0; i < output.rows; i++) {
-            if(output.at<int>(i) == testResponses.at<int>(i)) {
+            int output_hit = 0;
+            for (j = 0, output_hit; j < output.cols; j++) {
+               if (fcmp(output.at<float>(i,j),testResponses.at<float>(i,j))) {
+                   output_hit++;
+               }
+            }
+            if (output_hit == class_count) {
+                t++;
                 hit_count++;
             }
+            else {
+                f++;
+            }
             //Console verbose
-            std::cout << "output[" << i << "]: " << output.at<int>(i) << std::endl;
         }
 
         // Console verbose
         std::cout << "hit_count: " << hit_count << std::endl << std::endl;
          
-        hit_ratio += (float)hit_count * 100/(float)output.rows;
         hit_count = 0;
         split_ini += split_size;
         split_end += split_size;    
     }    
 
-    hit_ratio = hit_ratio / (float)kfold;
+    hit_ratio = 100.0*((t*1.0)/(t+f));
     // Console verbose
     std::cout << "Test End!" << std::endl;
     std::cout << "-------------------------------------------------------------------" << std::endl;
     std::cout << kfold << "-fold Crossvalidation Hit Ratio: " << hit_ratio << "%" << std::endl;
     std::cout << "-------------------------------------------------------------------" << std::endl;
-
-    
     
     return hit_ratio;
 }
