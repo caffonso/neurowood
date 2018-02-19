@@ -2,11 +2,14 @@
 
 using namespace std;
 
+// Comparação entre floats crua, aproveitando a característica dos resultados
+// nossos de serem proximos de 1 ou de 0
 static bool fcmp(float a, float b)
 {
     return ((int)a == (int)b);
 }
 
+// Embaralha as linhas da matriz
 cv::Mat shuffleRows(const cv::Mat &matrix)
 {
   std::vector <int> seeds;

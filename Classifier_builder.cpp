@@ -26,8 +26,9 @@ Classifier* Classifier_builder::build_classifier(char *nome_arquivo_parametros)
     struct MODEL_DATA *model_data[];
     struct TRAINER_DATA *trainer_data[];
     // Abre o arquivo
-
+    
     // Interpreta e extrai os parâmetros do arquivo
+    
     
     // Constroi objetos de processamento de imagem 
     // É preciso alocar o vetor antes
@@ -38,7 +39,7 @@ Classifier* Classifier_builder::build_classifier(char *nome_arquivo_parametros)
     // Constroi objetos de extração de características
     // É preciso alocar o vetor antes
     for (count = 0; count < num_objetos; count++) {
-        _extractor[count] = build_ftr_extractor(extractor_data[count])
+        _extractor[count] = build_ftr_extractor(extractor_data[count]);
     }
  
     // Constroi o modelo
