@@ -20,10 +20,10 @@ class Classifier
 	Model_trainer* _trainer;				// Módulo responsável pelas rotinas de treinamento do classificador
 public:
 	
-	Classifier();    	// Construtor
+	Classifier(Im_processing* filters, Ftr_extractor* extractor, Model* model, Model_trainer* trainer);    	// Construtor
 	// Função principal: recebe uma imagem e retorna a previsão de categoria	
-	int classify(cv::Mat* input_img);
-    void train();
+	int classify(cv::Mat input_img);
+    void train(cv::Ptr<cv::ml::TrainData> data);
 	
 
      			

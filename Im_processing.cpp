@@ -34,8 +34,7 @@ Color_filter::Color_filter()
 // Aplica
 void Color_filter::apply(cv::Mat imgOriginal)
 {
-     cv::cvtColor(imgOriginal, imgOriginal, CV_BGR2GRAY);
-     cv::imshow("imgGray", imgOriginal);
+     cv::cvtColor(imgOriginal, imgOriginal);
   
 }
 
@@ -77,4 +76,4 @@ int main() {
 
     return(0);
 }
-*/
+*/m

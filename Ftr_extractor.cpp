@@ -8,7 +8,7 @@
 Haralick_extractor::Haralick_extractor() {}
 
 // Calcula o vetor
-cv::Mat* Haralick_extractor::calculate_vector(int *n)
+cv::Mat* Haralick_extractor::calculate_vector(cv::Mat img)
 {
     // implementação haralick
 	cv::Mat * mat;;
@@ -23,7 +23,7 @@ cv::Mat* Haralick_extractor::calculate_vector(int *n)
 LBP_extractor::LBP_extractor() {}
 
 // Calcula o vetor
-cv::Mat* LBP_extractor::calculate_vector(int *n)
+cv::Mat* LBP_extractor::calculate_vector(cv::Mat img)
 {
 	// implementação rotina LBP
 	cv::Mat * mat;;

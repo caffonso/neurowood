@@ -46,7 +46,7 @@ struct EXTRACTOR_DATA
 class Ftr_extractor
 {
 public:
-	virtual cv::Mat* calculate_vector(int *n) = 0;
+	virtual cv::Mat calculate_vector(cv::Mat img) = 0;
 };
 
 // Haralick
@@ -55,7 +55,7 @@ class Haralick_extractor: public Ftr_extractor
     HARALICK_PARAMS parameters;
 public:
     Haralick_extractor();
-	cv::Mat* calculate_vector(int *n);
+	cv::Mat calculate_vector(cv::Mat img);
 };
 
 // LBP
@@ -64,7 +64,7 @@ class LBP_extractor: public Ftr_extractor
     LBP_PARAMS parameters;
 public:
     LBP_extractor();
-	cv::Mat* calculate_vector(int *n);
+	cv::Mat calculate_vector(cv::Mat img);
 };
 
 #endif

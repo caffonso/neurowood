@@ -13,26 +13,43 @@
 #include "Classifier.hpp"
 #include "Classifier_builder.hpp"
 
+using namespace cv;
+using namespace cv::ml;
+using namespace std;
+
 void help() {
     std::cout << "$./Teste -data=<path> 0=mlp 1=knn" << std::endl;
 }  
 
 int main(int argc, char *argv[])
 {
-    char *data_filename;
-    int method = 0;
-    
-    cv::Mat img = cv::imread("test.png");
-    cv::imshow("imgOriginal",img);
-    Color_filter *gray = new Color_filter();
-    gray->apply(img);
-    cv::waitKey(0);  
-    
-    data_filename = argv[1];
-    method = atoi(argv[2]);
+    String classifier_save_filename;
+    String classifier_load_filename;
+    String data_filename;
 
-    help();
-    
+    int method = 0;
+ 
+ 	CommandLineParser parser(argc, argv, keys);
+ 	parser.about("NeuroWood v0.0.3");
+
+ 	if (parser.has("test")) {
+	 	if (parser.has("knn")) {
+	 		method = 1;
+	 	}
+	    if (parser.has("mlp")) {
+	 		method = 0;
+	 	}
+	 	data_filename = parser.get<String>(0);
+	 	cout << data_filename << endl;
+	}
+ 	if (parser.has("train")) {
+ 		data_filename = parser.get<String>(0);
+ 		data_load_filename = parser.get<String>(1);
+ 		data_save_filename = (parser.get<String>(2) != NULL ? parser.get<String>(2) : parser.get<String>(1));
+ 	
+
+ 	}
+
     if (method == 0) {
         MLP_Model *mlp_model = new MLP_Model();
         MLP_trainer *mlp_trainer = new MLP_trainer();
